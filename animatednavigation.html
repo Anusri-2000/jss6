@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Navigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667a0b, #f34369);
+        }
+        .navigation {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.5s;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+        }
+        .navigation.active {
+            width: 600px;
+            border-radius: 30px;
+            justify-content: space-evenly;
+        }
+        .toggleMenu {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgb(241, 6, 124);
+            border-radius: 50%;
+            transition: 0.5s;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navigation.active .toggleMenu {
+            background: #e91e63;
+            transition-delay: 0s;
+            transform: translateY(60px);
+            width: 30px;
+            height: 30px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+        }
+        .toggleMenu::before,
+        .toggleMenu::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 3px;
+            border-radius: 3px;
+            background: #333;
+            transition: 0.5s;
+        }
+        .toggleMenu::before {
+            transform: translateY(-5px);
+        }
+        .toggleMenu::after {
+            transform: translateY(5px);
+        }
+        .navigation.active .toggleMenu::before {
+            background: #fff;
+            transform: rotate(45deg);
+        }
+        .navigation.active .toggleMenu::after {
+            background: #fff;
+            transform: rotate(-45deg);
+        }
+        .navigation li {
+            list-style: none;
+            transition: 0.5s;
+            transform: scale(0);
+        }
+        .navigation.active li {
+            transition-delay: 0.5s;
+            transform: scale(1);
+        }
+        .navigation li a {
+            text-decoration: none;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 5px 15px;
+            border-radius: 20px;
+            transition: 0.5s;
+        }
+        .navigation li a:hover {
+            background: #ff4181;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <ul class="navigation">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Team</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <span class="toggleMenu"></span>
+    </ul>
+
+    <script>
+        let toggleMenu = document.querySelector('.toggleMenu');
+        let navigation = document.querySelector('.navigation');
+        toggleMenu.onclick = function() {
+            navigation.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
